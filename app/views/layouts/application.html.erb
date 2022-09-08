@@ -6,11 +6,22 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+     <ul>
+     <li>
+      <%=link_to user_user_path(@user.id),class:"nav-link text-light" do %>
+      <i class="fas fa-user"></i>マイページ
+      <%end%>
+     </li>
+     </ul>
+    </header>
+    <main>
     <%= yield %>
+    </main>
   </body>
 </html>
