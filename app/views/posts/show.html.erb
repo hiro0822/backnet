@@ -1,0 +1,24 @@
+<h1>投稿詳細</h1>
+
+<table class="table table-striped">
+  <tr>
+
+    <td><%= @post.title %></td>
+    <td><%= @post.body %></td>
+    <% if @post.user==current_user %>
+    <td><%=link_to "編集する",edit_post_path(@post.id),class: "btn btn-success"%></td>
+    <td><%=link_to "削除",post_path(@post.id),class: "btn btn-danger", method: :delete%></td>
+  </tr>
+  <%end%>
+</table>
+
+<table>
+  <%=render"comments/comments",posts: @post%>
+</table>
+
+<div>
+  <%=form_with model:[@post,@comment], local: true do |f| %>
+  <%=f.text_area :comment %>
+  <%=f.submit"投稿"%>
+  <%end%>
+</div>

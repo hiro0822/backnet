@@ -1,0 +1,12 @@
+<h1>投稿編集</h1>
+
+<%= form_with model:@post do |f| %>
+<h5>タイトル</h5>
+<%=f.text_field :title %>
+<h5>内容</h5>
+<%=f.text_area :body %>
+<%=f.submit '編集終了' %>
+
+<%=link_to "一覧へ",posts_path %>
+<%=link_to "戻る",post_path(@post.id) %>
+<% end %>

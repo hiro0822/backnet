@@ -1,4 +1,5 @@
 class User::UsersController < ApplicationController
+
   def show
     @user = User.find(params[:id])
   end
@@ -16,10 +17,22 @@ class User::UsersController < ApplicationController
     end
   end
 
+  def unsubscribe
+   @user=User.find(params[:id])
+  end
+
+  def withdraw
+    @user=current_user
+    @user.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
+  end
+
+
   private
 
   def user_params
-    params.require(:user).permit(:nickname,:introduction,:email)
+    params.require(:user).permit(:nickname,:introduction,:email,:profile_image)
   end
 
 end

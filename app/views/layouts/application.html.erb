@@ -12,13 +12,60 @@
 
   <body>
     <header>
-     <ul>
-     <li>
-      <%=link_to user_user_path(@user.id),class:"nav-link text-light" do %>
-      <i class="fas fa-user"></i>マイページ
-      <%end%>
-     </li>
-     </ul>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+       <div class="container">
+          <%=link_to "BackNet",root_path,class:"text-white"%>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+
+
+              <li>
+                <%=link_to user_user_path(current_user.id),class:"nav-link text-light" do %>
+                <i class="fas fa-user"></i>My page
+                <%end%>
+              </li>
+              <li>
+                <%=link_to posts_path,class:"nav-link text-light" do %>
+                <i class="fas fa-blog"></i>Post index
+                <%end%>
+              </li>
+              <li>
+                <%=link_to posts_path,class:"nav-link text-light" do %>
+                <i class="fas fa-comments"></i>Group chat
+                <%end%>
+              </li>
+              <li>
+                <%=link_to destroy_user_session_path,method: :delete,class:"nav-link text-light" do %>
+                <i class="fas fa-sign-out"></i>Log out
+                <%end%>
+              </li>
+
+              <%else%>
+
+              <li>
+                <%=link_to root_path,class:"nav-link text-light" do %>
+                <i class="fas fa-home"></i>Top
+                <%end%>
+              </li>
+
+              <li>
+                <%=link_to new_admin_session_path,class:"nav-link text-light" do %>
+                <i class="fas fa-baseball-ball"></i>Admin Login
+                <%end%>
+              </li>
+
+              <%end%>
+
+            </ul>
+          </div>
+
+       </div>
+      </nav>
     </header>
     <main>
     <%= yield %>
