@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
 
+
   namespace :admin do
     root "homes#top"
     resources :users,only: [:show, :index, :edit, :update]
-
+    resources :posts,only: [:index,:show,:destroy]
+    resources :comments,only: [:destroy]
   end
   get 'comments/new'
   get 'comments/index'
