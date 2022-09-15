@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+
+
   def new
     @post=Post.new
   end
@@ -37,6 +39,15 @@ class PostsController < ApplicationController
     @post=Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
+  end
+
+  def search
+    if params[:keyword].present?
+      @post = Post.where('title LIKE ? or body LIKE ?', "%#{params[:keyword]}%","%#{params[:keyword]}%") #'カラムLIKE?',"%#{params[:keyword]}%"が１セット今回は２つのカラムで検索をかけるため２つ用意
+      @keyword = params[:keyword]
+    else
+      @post = Post.all
+    end
   end
 
   private

@@ -60,7 +60,7 @@
               </li>
 
                <li>
-                 <%=link_to destroy_admin_session_path,class:"nav-link text-light" do %>
+                 <%=link_to destroy_admin_session_path,method: :delete,class:"nav-link text-light" do %>
                  <i class="fad fa-sign-out-alt"></i>Admin Logout
                  <%end%>
                </li>
@@ -72,6 +72,9 @@
        </div>
       </nav>
     </header>
+    <% if flash[:alert].present? %>
+      <p><%= flash[:alert] %></p>
+    <% end %>
     <main>
     <%= yield %>
     </main>

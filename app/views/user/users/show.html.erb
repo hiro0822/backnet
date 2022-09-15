@@ -5,6 +5,7 @@
 
   <div class="row mt-3">
    <div class="col-2"><h4><strong>ユーザー情報</strong></h4></div>
+   <div class="col-2"><%= link_to "いいね一覧",myfavorites_user_users_path(@user), class: "btn btn-success" %></div>
    <div class="col-2"><%= link_to "ログアウト",destroy_user_session_path,method: :delete,class:"btn btn-success"%></div>
    <div class="col-2"><%= link_to "編集する", edit_user_user_path(@user), class: "btn btn-success" %></div>
   </div>

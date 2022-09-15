@@ -7,7 +7,9 @@
     <%end%>
   </td>
   <td><%=comment.comment %></td>
+  <% if @post.user==current_user %>
   <td><%=link_to"削除",post_comment_path(comment.post,comment),method: :delete,class: "btn btn-sm btn-danger"%></td>
 
 </tr>
+<%end%>
 <%end%>

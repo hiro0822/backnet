@@ -5,6 +5,9 @@
 
     <td><%= @post.title %></td>
     <td><%= @post.body %></td>
+    <td id='favorite_buttons_<%= @post.id %>'>
+             <%=render 'favorites/favorites',post: @post%>
+    </td>
     <% if @post.user==current_user %>
     <td><%=link_to "編集する",edit_post_path(@post.id),class: "btn btn-success"%></td>
     <td><%=link_to "削除",post_path(@post.id),class: "btn btn-danger", method: :delete%></td>

@@ -5,7 +5,7 @@
 
     <td><%= @post.title %></td>
     <td><%= @post.body %></td>
-
+    
     <td><%=link_to "削除",admin_post_path(@post.id),class: "btn btn-danger", method: :delete%></td>
   </tr>
 
