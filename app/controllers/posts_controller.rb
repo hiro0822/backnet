@@ -8,6 +8,8 @@ class PostsController < ApplicationController
   def create
     @post=Post.new(post_params)
     @post.user_id=current_user.id
+    tag_list = params[:post][:tag_names].split(",")
+    @post.tags_save(tag_list)
     @post.save
     redirect_to post_path(@post)
   end
@@ -47,6 +49,17 @@ class PostsController < ApplicationController
       @keyword = params[:keyword]
     else
       @post = Post.all
+    end
+  end
+
+  def tag_search
+    if params[:keyword].present?
+      tag = Tag.where('tag_name LIKE?',"%#{params[:keyword]}%")
+      post_ids = tag.map(&:posts).flatten.uniq
+      @post = Post.where(id: post_ids)
+      @keyword = params[:keyword]
+    else
+      @post=Post.all
     end
   end
 

@@ -5,6 +5,12 @@
 
     <td><%= @post.title %></td>
     <td><%= @post.body %></td>
+    <td>
+      <% @post.tags.each do |tag|%>
+        <%= tag.tag_name%>
+      <%end%>
+    </td>
+
     <td id='favorite_buttons_<%= @post.id %>'>
              <%=render 'favorites/favorites',post: @post%>
     </td>
