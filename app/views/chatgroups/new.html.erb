@@ -1,0 +1,13 @@
+<h2>チャットグループ新規作成</h2>
+
+<%= form_with url: chatgroups_path, model: @chatgroup do |f| %>
+
+<%=f.label "グループ画像"%>
+<%= f.file_field :group_image, accept: "image/*" %>
+<h4>グループ名</h4>
+<%=f.text_field :group_name %>
+<h4>グループ概要</h4>
+<%=f.text_field :introduction %>
+
+<%=f.submit'新規作成',class:"btn btn-success"%>
+<%end%>

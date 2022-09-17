@@ -1,0 +1,30 @@
+<h4>チャットグループ一覧</h4>
+
+
+
+<%=link_to "グループ新規作成",new_chatgroup_path %>
+<%=link_to "ユーザーページへ",user_user_path(current_user)%>
+
+
+<table class="table table-hover table-inverse">
+  <thead>
+    <th>グループ画像</th>
+    <th>ルーム名</th>
+    <th>ルーム概要</th>
+    <th>参加人数</th>
+  </thead>
+  <tbody>
+  <% @chatgroups.each do |group| %>
+    <tr>
+      <td><%=image_tag group.get_group_image(100,100)%></td>
+      <td><%=group.group_name%></td>
+      <td><%=group.introduction%></td>
+      <td></td>
+    </tr>
+    <%end%>
+  </tbody>
+
+
+
+
+</table>

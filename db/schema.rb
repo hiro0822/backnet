@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_15_123315) do
+ActiveRecord::Schema.define(version: 2022_09_17_081851) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,10 +52,34 @@ ActiveRecord::Schema.define(version: 2022_09_15_123315) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "chatgroups", force: :cascade do |t|
+    t.string "group_name", null: false
+    t.text "introduction"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "chatmessages", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "chatgroup_id"
+    t.text "message", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chatgroup_id"], name: "index_chatmessages_on_chatgroup_id"
+    t.index ["user_id"], name: "index_chatmessages_on_user_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.integer "post_id"
     t.integer "user_id"
     t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "connects", force: :cascade do |t|
+    t.integer "chatgroup_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

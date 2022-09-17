@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :posts,dependent: :destroy
   has_many :comments,dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :connects,dependent: :destroy
+  has_many :chatgroups,through: :connects,dependent: :destroy
   has_one_attached :profile_image
 
   validates :introduction, length: { maximum: 50 }
@@ -18,7 +20,7 @@ class User < ApplicationRecord
     end
     profile_image.variant(resize_to_limit: [width, height]).processed
   end
-  
+
   def self.guest
   find_or_create_by!(email: 'aaa@aaa.com') do |user|
     user.password = SecureRandom.urlsafe_base64
