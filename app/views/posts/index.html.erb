@@ -2,7 +2,7 @@
   <div class="row">
    <div class="col-md-8 offset-md-1">
        <h1>投稿一覧</h1>
-        <p><%=link_to "新規投稿",new_post_path %></p>
+        <p><%=link_to "新規投稿",new_post_path,class: "btn btn-success col-sm-2" %></p>
         <P>投稿検索</P>
         <%= form_with url: search_posts_path, local: true, method: :get do |form| %>
         <%= form.text_field :keyword %>

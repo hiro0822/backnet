@@ -1,8 +1,22 @@
-<p>ようこそBACKNETへ！<br>
-ここはファン歴関係なく野球好きが集まり語り合うサイトです！！<br>
-あなたもいろいろなファンと語り合いませんか？
-</p>
+<div class="container">
+ <div class="row">
+   <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
 
-<%= link_to "新規登録",new_user_registration_path %>
-<%= link_to "ログイン",new_user_session_path %>
-<%= link_to "ゲストログイン",users_guest_sign_in_path,method: :post%>
+      <h1>ようこそ<strong>BACKNETへ！</strong></h1>
+     <p> ここはファン歴関係なく野球好きが集まり語り合うサイトです！！</p>
+         <P>あなたもいろいろなファンと語り合いませんか？</P>
+
+    <div class="btn-wrapper col-10 mx-auto">
+      <div>
+      <%= link_to "新規登録",new_user_registration_path,class:"btn btn-info btn-sm btn-block mb-3" %>
+      </div>
+      <div>
+      <%= link_to "ログイン",new_user_session_path,class:"btn btn-success btn-sm btn-block mb-3" %>
+      </div>
+      <div>
+      <%= link_to "ゲストログイン",users_guest_sign_in_path,method: :post,class:"btn btn-primary btn-sm btn-block"%>
+      </div>
+    </div>
+  </div>
+ </div>
+</div>

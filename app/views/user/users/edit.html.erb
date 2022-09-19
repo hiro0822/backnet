@@ -1,21 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <h1>ユーザー情報編集</h1>
+    </div>
+  </div>
+      <%= form_with model: @user,url: user_user_path(@user.id),method: :put do |f| %>
 
+  <div class="row">
+    <div class="col-sm-8 offset-3">
+      <table class="table-borderless-item">
 
-<h1>ユーザー情報編集</h1>
+        <tr>
+          <div>
+           <p class="my-3">
+            <td><%= f.label "プロフィール画像" %></td>
+            <td><%= f.file_field :profile_image, accept: "image/*" %></td>
+           </p>
+          </div>
+        </tr>
 
-<%= form_with model: @user,url: user_user_path(@user.id),method: :put do |f| %>
+        <tr>
+          <div class="col-sm-2">
+           <p class="my-3">
+            <td><%= f.label "ニックネーム" %></td>
+            <td><%= f.text_field :nickname %></td>
+           </p>
+          </div>
+        </tr>
 
-<%= f.label "ニックネーム" %>
-<%= f.text_field :nickname %>
+        <tr>
+          <div class="col-sm-2">
+           <p>
+            <td><%= f.label "自己紹介文" %></td>
+            <td><%= f.text_area :introduction,size: "40×60",class:"form-control" %></td>
+           </p>
+          </div>
+       </tr>
 
-<%=f.label "プロフィール画像"%>
-<%= f.file_field :profile_image, accept: "image/*" %>
+       <tr>
+          <div class="col-sm-2">
+           <p class="my-3">
+            <td><%= f.label "メールアドレス" %></td>
+            <td><%= f.text_field :email %></td>
+           </p>
+          </div>
+       </tr>
 
-<%= f.label "自己紹介文" %>
-<%= f.text_field :introduction %>
-
-<%= f.label "メールアドレス" %>
-<%= f.text_field :email %>
-
-<%= f.submit "編集内容を保存",class: "btn btn-success" %>
-<%= link_to "退会",user_unsubscribe_path, class: "btn btn-danger"%>
-<% end %>
+      </table>
+    </div>
+  </div>
+  <div class="row text-center mb-3">
+    <div class="col-sm-12">
+      <td><%= f.submit "編集内容を保存",class: "btn btn-success col-sm-2" %></td>
+    </div>
+  </div>
+  <div class="row text-center mb-3">
+    <div class="col-sm-12">
+      <td><%= link_to "退会",user_unsubscribe_path, class: "btn btn-danger col-sm-2"%></td>
+    </div>
+  </div>
+   <% end %>
+</div>

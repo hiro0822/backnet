@@ -2,8 +2,8 @@
 
 
 
-<%=link_to "グループ新規作成",new_chatgroup_path %>
-<%=link_to "ユーザーページへ",user_user_path(current_user)%>
+<%=link_to "グループ新規作成",new_chatgroup_path,class: "btn-primary col-sm-2 mb-5" %>
+
 
 
 <table class="table table-hover table-inverse">
@@ -19,9 +19,9 @@
       <td><%=image_tag group.get_group_image(100,100)%></td>
       <td><%=group.group_name%></td>
       <td><%=group.introduction%></td>
-      <td></td>
-      <td><%=link_to "編集",edit_chatgroup_path(group)%></td>
-      <td><%=link_to "削除",chatgroup_path(group),method: :delete %></td>
+      <td>(<%=group.user_ids.count%>)</td>
+      <td><%=link_to "編集",edit_chatgroup_path(group),class: "btn btn-success"%></td>
+      <td><%=link_to "削除",chatgroup_path(group),method: :delete, class: "btn btn-danger" %></td>
     </tr>
     <%end%>
   </tbody>
