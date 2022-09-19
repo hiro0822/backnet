@@ -1,7 +1,7 @@
 <h2>チャットグループ新規作成</h2>
 
 <%= form_with url: chatgroups_path, model: @chatgroup do |f| %>
-
+<%= text_field_tag 'chatgroup[user_ids][]', "#{current_user.id}", type: 'hidden' %>
 <%=f.label "グループ画像"%>
 <%= f.file_field :group_image, accept: "image/*" %>
 <h4>グループ名</h4>

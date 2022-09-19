@@ -1,0 +1,12 @@
+<h4>チャットグループ一覧</h4>
+
+<%=form_with model: @chatgroup do |f| %>
+<h5>グループ名</h5>
+<%=f.text_field :group_name %>
+<h5>グループ概要</h5>
+<%=f.text_area :introduction %>
+<%=f.submit '編集終了' %>
+
+<%=link_to "一覧へ",chatgroups_path %>
+
+<%end%>
