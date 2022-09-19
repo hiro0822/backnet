@@ -8,6 +8,7 @@ class ChatgroupsController < ApplicationController
 
   def show
     @chatgroup = Chatgroup.find(params[:id])
+    @connects = @chatgroup.connects
   end
 
 
@@ -29,9 +30,16 @@ class ChatgroupsController < ApplicationController
   end
 
   def update
-    @chatgroup = Chatgroup.find(params[:id])
-    @chatgroup.update(chatgroup_params)
-    redirect_to chatgroup_path(@chatgroup)
+    if groupuser_params[:user_id].present?
+       connect = Connect.new(groupuser_params)
+       connect.chatgroup_id = params[:id]
+       connect.save
+       redirect_to chatgroup_path(params[:id])
+    else
+      @chatgroup = Chatgroup.find(params[:id])
+      @chatgroup.update(chatgroup_params)
+      redirect_to chatgroups_path#(@chatgroup)
+    end
   end
 
   def destroy
@@ -41,6 +49,10 @@ class ChatgroupsController < ApplicationController
   end
 
   private
+
+  def groupuser_params
+    params.require(:chatgroup).permit(:user_id)
+  end
 
   def chatgroup_params
     params.require(:chatgroup).permit(:group_name,:introduction,:group_image,user_ids: [])

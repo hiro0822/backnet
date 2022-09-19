@@ -1,0 +1,16 @@
+<h1><%=@group.group_name%></h1>
+<% @group.chatmessages.each do |message| %>
+<p><%=message.user.nickname %>
+<%=message.message %></p>
+<% end %>
+<%=flash[:notice] %>
+<% if @chatmessage.errors.any? %>
+<%@chatmessage.errors.full_messages.each do |msg|%>
+<%=msg%>
+<% end %>
+<% end %>
+<%=form_with model: @chatmessage,url: chatgroup_chatmessages_path(@group.id) do |f| %>
+<%=f.hidden_field :chatgroup_id,value: @group.id %>
+<%=f.text_field :message %>
+<%=f.submit "送信" %>
+<% end %>

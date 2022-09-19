@@ -45,17 +45,11 @@
                 <%end%>
               </li>
 
-              <%else%>
+              <% elsif admin_signed_in? %>
 
               <li>
                 <%=link_to root_path,class:"nav-link text-light" do %>
                 <i class="fas fa-home"></i>Top
-                <%end%>
-              </li>
-
-              <li>
-                <%=link_to new_admin_session_path,class:"nav-link text-light" do %>
-                <i class="fas fa-baseball-ball"></i>Admin Login
                 <%end%>
               </li>
 
@@ -64,6 +58,19 @@
                  <i class="fad fa-sign-out-alt"></i>Admin Logout
                  <%end%>
                </li>
+               
+               <% else %>
+               <li>
+                <%=link_to root_path,class:"nav-link text-light" do %>
+                <i class="fas fa-home"></i>Top
+                <%end%>
+              </li>
+               
+              <li>
+                <%=link_to new_admin_session_path,class:"nav-link text-light" do %>
+                <i class="fas fa-baseball-ball"></i>Admin Login
+                <%end%>
+              </li>
               <%end%>
 
             </ul>

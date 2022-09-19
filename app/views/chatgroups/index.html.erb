@@ -16,9 +16,18 @@
   <tbody>
   <% @chatgroups.each do |group| %>
     <tr>
-      <td><%=image_tag group.get_group_image(100,100)%></td>
-      <td><%=group.group_name%></td>
-      <td><%=group.introduction%></td>
+      <td><%=link_to chatgroup_path(group.id) do %>
+        <%=image_tag group.get_group_image(100,100)%>
+        <%end%>
+      </td>
+      <td><%=link_to chatgroup_path(group.id) do %>
+        <%=group.group_name%>
+        <%end%>
+      </td>
+      <td><%=link_to chatgroup_path(group.id) do %>
+        <%=group.introduction%>
+        <%end%>
+      </td>
       <td>(<%=group.user_ids.count%>)</td>
       <td><%=link_to "編集",edit_chatgroup_path(group),class: "btn btn-success"%></td>
       <td><%=link_to "削除",chatgroup_path(group),method: :delete, class: "btn btn-danger" %></td>

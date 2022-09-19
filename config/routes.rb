@@ -2,11 +2,14 @@ Rails.application.routes.draw do
 
 
 
+  
+  get 'chatmessages/index'
   namespace :admin do
     root "homes#top"
     resources :users,only: [:show, :index, :edit, :update]
     resources :posts,only: [:index,:show,:destroy]
     resources :comments,only: [:destroy]
+    resources :chatgroups,only: [:index,:show,:destroy,:edit]
   end
   get 'comments/new'
   get 'comments/index'
@@ -38,13 +41,15 @@ Rails.application.routes.draw do
       get 'search'
       get 'tag_search'
     end
-    
-    
+
+
   end
 
   devise_for :admins,skip: [:registrations,:passwords],controllers: {
     sessions: "admin/sessions"
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :chatgroups
+  resources :chatgroups do 
+    resources :chatmessages,only: [:index,:create,:destroy]
+  end  
 end

@@ -1,6 +1,7 @@
 class Chatgroup < ApplicationRecord
   has_many :connects,dependent: :destroy
-  has_many :users,through: :connects,dependent: :destroy
+  has_many :users,through: :connects
+  has_many :chatmessages,dependent: :destroy
 
   has_one_attached :group_image
 

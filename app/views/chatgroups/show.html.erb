@@ -1,4 +1,17 @@
+<div class="container">
+<%= form_with model: @chatgroup, local: true do |f| %>
+
+<%= f.hidden_field :user_id, :value => current_user.id %>
+<%=f.submit'参加する',class:"btn btn-success"%>
+<%end%>
 <h4><%=@chatgroup.group_name%></h4>
 
 <P><%=@chatgroup.introduction%></P>
+
+<% @connects.each do |connect|%>
+<%= connect.user.nickname %>
+<% end %>
+
+<%=link_to "チャットルームへ",chatgroup_chatmessages_path(@chatgroup.id)%>
 <%=link_to "一覧へ",chatgroups_path %>
+</div>

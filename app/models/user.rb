@@ -7,8 +7,10 @@ class User < ApplicationRecord
   has_many :posts,dependent: :destroy
   has_many :comments,dependent: :destroy
   has_many :favorites, dependent: :destroy
-  has_many :connects,dependent: :destroy
-  has_many :chatgroups,through: :connects,dependent: :destroy
+  has_many :connects
+  has_many :chatgroups,through: :connects
+  has_many :chatmessages,dependent: :destroy
+
   has_one_attached :profile_image
 
   validates :introduction, length: { maximum: 50 }
