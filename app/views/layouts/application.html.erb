@@ -48,8 +48,26 @@
               <% elsif admin_signed_in? %>
 
               <li>
-                <%=link_to root_path,class:"nav-link text-light" do %>
+                <%=link_to admin_root_path,class:"nav-link text-light" do %>
                 <i class="fas fa-home"></i>Top
+                <%end%>
+              </li>
+
+               <li>
+                <%=link_to admin_users_path,class:"nav-link text-light" do %>
+                <i class="fas fa-users"></i>users
+                <%end%>
+              </li>
+
+              <li>
+                <%=link_to admin_chatgroups_path,class:"nav-link text-light" do %>
+                <i class="fas fa-comments"></i>Group chat
+                <%end%>
+              </li>
+
+              <li>
+                <%=link_to admin_posts_path,class:"nav-link text-light" do %>
+                <i class="fas fa-blog"></i>Post index
                 <%end%>
               </li>
 
@@ -58,14 +76,15 @@
                  <i class="fad fa-sign-out-alt"></i>Admin Logout
                  <%end%>
                </li>
-               
+
                <% else %>
                <li>
                 <%=link_to root_path,class:"nav-link text-light" do %>
                 <i class="fas fa-home"></i>Top
                 <%end%>
               </li>
-               
+
+
               <li>
                 <%=link_to new_admin_session_path,class:"nav-link text-light" do %>
                 <i class="fas fa-baseball-ball"></i>Admin Login

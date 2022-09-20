@@ -1,9 +1,23 @@
 <h2>検索結果”<%=@keyword%>”</h2>
 
 <div class="container px-5 px-sm-0">
- <div class="row">
-  <div class="col-md-8 offset-md-1">
-    <table class="table table-hover table-inverse">
+  <div class="row">
+   <div class="col-md-11 offset-md-1">
+       <h1>投稿一覧</h1>
+        <p><%=link_to "新規投稿",new_post_path,class: "btn btn-success col-sm-2" %></p>
+        <P>投稿検索</P>
+        <%= form_with url: search_posts_path, local: true, method: :get do |form| %>
+        <%= form.text_field :keyword %>
+        <%= form.submit "検索" %>
+      <% end %>
+
+      <P>tag検索</P>
+        <%= form_with url: tag_search_posts_path, local: true, method: :get do |form| %>
+        <%= form.text_field :keyword %>
+        <%= form.submit "検索" %>
+      <% end %>
+
+        <table class="table table-hover table-inverse">
          <thead>
           <tr>
             <th>ユーザー画像</th>
@@ -16,7 +30,7 @@
           </tr>
          </thead>
          <tbody>
-          <% @post.each do |post| %>
+          <% @posts.each do |post| %>
           <tr>
             <td><%=link_to user_user_path(post.user.id) do %>
              <%= image_tag post.user.get_profile_image(80,80)%>
@@ -26,8 +40,8 @@
              <%= post.user.nickname %>
              <%end%>
             </td>
-            <td><%=link_to post.title,post_path(post.id)%></td>
-            <td><%=link_to post.body%></td>
+            <td><%=link_to post.title.truncate(10),post_path(post.id)%></td>
+            <td><%=link_to post.body.truncate(20)%></td>
             <td><%=link_to "#{post.comments.count}コメント",post_path(post.id)%></td>
             <td id='favorite_buttons_<%= post.id %>'>
              <%=render 'favorites/favorites',post: post%>
@@ -36,11 +50,6 @@
           <%end%>
          </tbody>
         </table>
-
-
-
-
-
+   </div>
   </div>
- </div>
 </div>

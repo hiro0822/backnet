@@ -1,14 +1,19 @@
 class ChatgroupsController < ApplicationController
 
   def index
-    @chatgroups = Chatgroup.all
+    @chatgroups = Chatgroup.all.order(created_at: :desc).page(params[:page]).per(10)
     @chatgroup_join = Connect.where(user_id: current_user.id)
     @nogroup = "参加しているグループはありません"
   end
 
   def show
+    #connect =  current_user.connects.find_by(chatgroup_id: @chatgroup.id)
+    #if !connect.banishd
     @chatgroup = Chatgroup.find(params[:id])
-    @connects = @chatgroup.connects
+    @connects = @chatgroup.connects.page(params[:page]).per(10)
+    #else
+    #redirect_to root_path, alert: "you ared alredy bunishd"
+    #end
   end
 
 
@@ -18,6 +23,7 @@ class ChatgroupsController < ApplicationController
 
   def create
     @chatgroup = Chatgroup.new(chatgroup_params)
+    @chatgroup.owner_id = current_user.id
       if @chatgroup.save
       redirect_to chatgroups_path, notice: 'チャットグループを作成しました'
       else
@@ -38,14 +44,28 @@ class ChatgroupsController < ApplicationController
     else
       @chatgroup = Chatgroup.find(params[:id])
       @chatgroup.update(chatgroup_params)
-      redirect_to chatgroups_path#(@chatgroup)
+      redirect_to chatgroups_path
     end
   end
+
+  #def banish
+     #@chatgroup = Chatgroup.find(params[:id])
+     #banish_user = User.find(params[:user_id])
+     #connect = banish_user.connects.find_by(chatgroup_id: @chatgroup.id)
+     #connect.update(banishd: true)
+  #end
 
   def destroy
     @chatgroup = Chatgroup.find(params[:id])
     @chatgroup.destroy
     redirect_to chatgroups_path
+  end
+
+
+
+  def join
+    @chatgroup_join = Connect.where(user_id: current_user.id)
+    @nogroup = "参加しているグループはありません"
   end
 
   private

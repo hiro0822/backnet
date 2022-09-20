@@ -1,2 +1,43 @@
-<h1>Admin::Chatgroups#show</h1>
-<p>Find me in app/views/admin/chatgroups/show.html.erb</p>
+<div class="container">
+ <h1><%=@chatgroup.group_name %></h1>
+ <div class="row">
+  <div class="col-5">
+    <%= image_tag @chatgroup.get_group_image(300,300)%>
+   <table class="table table-bordered mt-3">
+     <tr>
+       <td class="border-dark">グループ概要</td>
+       <td class="border-dark"><%= @chatgroup.introduction %></td>
+    </tr>
+   </table>
+
+  </div>
+  <div class="col-7">
+   <h3>参加しているユーザー</h3>
+   <table class="table table-hover table-inverse">
+     <thead>
+       <tr>
+         <td>ユーザー画像</td>
+         <td>ユーザー名</td>
+       </tr>
+     </thead>
+     <tbody>
+      <% @connects.each do |connect|%>
+        <tr>
+          <td>
+            <%=link_to user_user_path(connect.user.id) do %>
+            <%= image_tag connect.user.get_profile_image(80,80)%>
+             <%end%>
+          </td>
+          <td>
+            <%=link_to user_user_path(connect.user.id) do %>
+            <%= connect.user.nickname %>
+            <%end%>
+          </td>
+        </tr>
+      <% end %>
+     </tbody>
+    </table>
+  </div>
+ </div>
+</div>
+

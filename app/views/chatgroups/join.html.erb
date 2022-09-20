@@ -1,0 +1,36 @@
+
+
+
+<h5>参加中のグループ</h5>
+<% if @chatgroup_join == [] %>
+<%=@nogroup%>
+<%else%>
+参加中のグループ
+<table class="table table-hover table-inverse">
+ <thead>
+   <th>グループ画像</th>
+    <th>ルーム名</th>
+    <th>ルーム概要</th>
+    <th>参加人数</th>
+ </thead>
+ <tbody>
+<% @chatgroup_join.each do |connect| %>
+  <tr>
+    <td>
+      <%=link_to chatgroup_path(connect.chatgroup) do %>
+      <%=image_tag connect.chatgroup.get_group_image(100,100)%>
+      <%end%>
+    </td>
+    <td><%=connect.chatgroup.group_name%></td>
+    <td><%=connect.chatgroup.introduction%></td>
+    <td>(<%=connect.chatgroup.user_ids.count%>)</td>
+    <td><%=link_to "編集",edit_chatgroup_path(connect.chatgroup.id),class: "btn btn-success"%></td>
+    <td><%=link_to "削除",chatgroup_path(connect.chatgroup.id),method: :delete, class: "btn btn-danger" %></td>
+  </tr>
+  <%end%>
+ </tbody>
+
+</table>
+
+
+<%end%>

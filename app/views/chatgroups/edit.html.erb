@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row text-right mt-4">
-    <div class="col-4">
+    <div class="col-6">
         <h4>チャットグループ編集</h4>
     </div>
   </div>
@@ -9,16 +9,13 @@
     <div class="col-sm-8 offset-3">
 
         <%=form_with model: @chatgroup do |f| %>
-        <h5>グループ名</h5>
-        <%=f.text_field :group_name %>
-        <h5>グループ概要</h5>
-        <%=f.text_area :introduction %>
+          <h5>グループ名</h5>
+          <%=f.text_field :group_name, style: "width: 50%;" %>
+          <h5>グループ概要</h5>
+          <%=f.text_area :introduction, style: "width: 50%; height: 200px;" %>
+          <%=f.submit '編集終了',class: "btn btn-success col-sm-2" %>
+        <%end%>
      </div>
    </div>
-   <div class="row">
-    <div class="col-sm-8 offset-3">
-      <td><%=f.submit '編集終了',class: "btn btn-success col-sm-2" %></td>
-    </div>
-  </div>
-<%end%>
+
 </div>

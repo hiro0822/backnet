@@ -1,17 +1,63 @@
 <div class="container">
-<%= form_with model: @chatgroup, local: true do |f| %>
+ <h1><%=@chatgroup.group_name %></h1>
+ <div class="row">
+  <div class="col-5">
+    <%= image_tag @chatgroup.get_group_image(300,300)%>
+   <table class="table table-bordered mt-3">
+     <tr>
+       <td class="border-dark">グループ概要</td>
+       <td class="border-dark"><%= @chatgroup.introduction %></td>
+    </tr>
+   </table>
+   <% if current_user.id == @chatgroup.owner_id %>
+    <%= link_to "削除",chatgroup_path(@chatgroup.id),mehtod: :delete, date:{confirm:"本当に削除しますか？"} %>
+    <% end %>
+    <% if Connect.find_by(chatgroup_id: @chatgroup.id,user_id: current_user.id).present? %>
+     <%=link_to "チャットルームへ",chatgroup_chatmessages_path(@chatgroup.id), class: "btn btn-primary"%>
+    <% else %>
+     <%= form_with model: @chatgroup, local: true do |f| %>
+     <%= f.hidden_field :user_id, :value => current_user.id %>
+     <%=f.submit'参加する',class:"btn btn-success"%>
+     <%end%>
+    <% end %>
 
-<%= f.hidden_field :user_id, :value => current_user.id %>
-<%=f.submit'参加する',class:"btn btn-success"%>
-<%end%>
-<h4><%=@chatgroup.group_name%></h4>
+    <%=link_to "一覧へ",chatgroups_path,class: "btn btn-info" %>
 
-<P><%=@chatgroup.introduction%></P>
-
-<% @connects.each do |connect|%>
-<%= connect.user.nickname %>
-<% end %>
-
-<%=link_to "チャットルームへ",chatgroup_chatmessages_path(@chatgroup.id)%>
-<%=link_to "一覧へ",chatgroups_path %>
+  </div>
+  <div class="col-7">
+   <h3>参加しているユーザー</h3>
+   <table class="table table-hover table-inverse">
+     <thead>
+       <tr>
+         <td>ユーザー画像</td>
+         <td>ユーザー名</td>
+       </tr>
+     </thead>
+     <tbody>
+   
+      <% @connects.each do |connect|%>
+        <tr>
+          <td>
+            <%=link_to user_user_path(connect.user.id) do %>
+            <%= image_tag connect.user.get_profile_image(80,80)%>
+             <%end%>
+          </td>
+          <td>
+            <%=link_to user_user_path(connect.user.id) do %>
+            <%= connect.user.nickname %>
+            <%end%>
+          </td>
+        </tr>
+      <% end %>
+     </tbody>
+    </table>
+    <%= paginate @connects %>
+  </div>
+ </div>
 </div>
+
+
+
+
+
+

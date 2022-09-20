@@ -1,2 +1,30 @@
-<h1>Admin::Chatgroups#index</h1>
-<p>Find me in app/views/admin/chatgroups/index.html.erb</p>
+<h4>チャットグループ一覧</h4>
+
+<table class="table table-hover table-inverse">
+  <thead>
+    <th>グループ画像</th>
+    <th>ルーム名</th>
+    <th>ルーム概要</th>
+    <th>参加人数</th>
+  </thead>
+  <tbody>
+  <% @chatgroups.each do |group| %>
+    <tr>
+      <td><%=link_to admin_chatgroup_path(group.id) do %>
+        <%=image_tag group.get_group_image(100,100)%>
+        <%end%>
+      </td>
+      <td><%=link_to admin_chatgroup_path(group.id) do %>
+        <%=group.group_name%>
+        <%end%>
+      </td>
+      <td><%=link_to admin_chatgroup_path(group.id) do %>
+        <%=group.introduction%>
+        <%end%>
+      </td>
+      <td>(<%=group.user_ids.count%>)</td>
+      <td><%=link_to "削除",admin_chatgroup_path(group),method: :delete, class: "btn btn-danger" %></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>

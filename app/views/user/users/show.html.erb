@@ -1,14 +1,12 @@
 <div class="container">
 
 
-     <h1>マイページ</h1>
 
 
-
-       <h4><strong>ユーザー情報</strong></h4>
+       <h1><strong>ユーザー情報</strong></h1>
 
       <div class="row">
-      <div class="col-5 ">
+      <div class="col-4">
     　<%= image_tag @user.get_profile_image(250,250)%>
       <table class="table table-bordered mt-3">
 
@@ -26,15 +24,15 @@
        <%= link_to "編集する", edit_user_user_path(@user), class: "btn btn-success" %>
   　</div>
 
-   <div class="col-7">
+   <div class="col-8">
      <table class="table table-hover table-inverse">
          <thead>
           <tr>
             <th>ユーザー画像</th>
-            <th>投稿者名</th>
+            <th>投稿者</th>
             <th>タイトル</th>
             <th>本文</th>
-            <th>コメント数</th>
+            <th>コメント</th>
             <th>いいね</th>
 
           </tr>
@@ -50,8 +48,8 @@
              <%= post.user.nickname %>
 
             </td>
-            <td><%=link_to post.title,post_path(post.id)%></td>
-            <td><%=link_to post.body%></td>
+            <td><%=link_to post.title.truncate(10),post_path(post.id)%></td>
+            <td><%=link_to post.body.truncate(10)%></td>
             <td><%=link_to "#{post.comments.count}コメント",post_path(post.id)%></td>
             <td id='favorite_buttons_<%= post.id %>'>
              <%=render 'favorites/favorites',post: post%>
@@ -60,6 +58,7 @@
           <%end%>
          </tbody>
         </table>
+        <%= paginate @posts %>
    </div>
 　</div>
 
