@@ -1,33 +1,44 @@
-<h1>投稿詳細</h1>
+<div class="container">
 
-<table class="table table-striped">
-  <tr>
-    <td><%= @post.created_at.strftime('%Y-%m-%d %H:%M') %></td>
-    <td><%= @post.title %></td>
-    <td><%= @post.body %></td>
-    <td>
-      <% @post.tags.each do |tag|%>
-        <%= tag.tag_name%>
-      <%end%>
-    </td>
 
-    <td id='favorite_buttons_<%= @post.id %>'>
-             <%=render 'favorites/favorites',post: @post%>
-    </td>
+ <h1>投稿詳細</h1>
+ <div class="row mt-3">
+   <div class="col-8">
+    <h2>
+    <%=@post.title%>
+    </h2>
+   </div>
+   <div class="col-4">
+     <%= @post.created_at.strftime('%Y-%m-%d %H:%M') %><br>
+     <%= @post.user.nickname %>
+   </div>
+ </div>
+ <div class="row">
+   <h5>Tag:</h5>
+    <% @post.tags.each do |tag|%>
+    <%= tag.tag_name%>
+    <%end%>
+ </div>
+
+ <div class="row my-5">
+   <h3 class="mx-5">
+   <%=safe_join(@post.body.split("\n"),tag(:br))%>
+   </h3>
+ </div>
+
     <% if @post.user==current_user %>
-    <td><%=link_to "編集する",edit_post_path(@post.id),class: "btn btn-success"%></td>
-    <td><%=link_to "削除",post_path(@post.id),class: "btn btn-danger", method: :delete%></td>
-  </tr>
+    <%=link_to "編集する",edit_post_path(@post.id),class: "btn btn-success"%>
+    <%=link_to "削除",post_path(@post.id),class: "btn btn-danger", method: :delete%>
   <%end%>
-</table>
 
 <table>
   <%=render"comments/comments",posts: @post%>
 </table>
 
-<div>
+<div class="my-5">
   <%=form_with model:[@post,@comment], local: true do |f| %>
   <%=f.text_area :comment %>
   <%=f.submit"投稿"%>
   <%end%>
+</div>
 </div>

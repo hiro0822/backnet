@@ -16,7 +16,7 @@
         </tr>
         <tr>
           <td class="border-dark">自己紹介文</td>
-          <td class="border-dark"><%= @user.introduction %></td>
+          <td class="border-dark"><%=safe_join(@user.introduction.split("\n"),tag(:br))%></td>
         </tr>
       </table>
        <%= link_to "いいね一覧",myfavorites_user_users_path(@user), class: "btn btn-primary" %>

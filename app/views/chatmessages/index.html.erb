@@ -1,14 +1,6 @@
 <div class="container">
-  <h1 class="text-center bg-info"><%=@group.group_name%></h1>
-   <div class="row">
-    <% @group.chatmessages.each do |message| %>
-
-      <div class="border d-flex flex-column bd-highlight ">
-        <%=message.user.nickname %>
-        <%=message.message %>
-        <% end %>
-      </div>
-
+ <h1 class="text-center bg-info"><%=@group.group_name%></h1>
+   <div class="mx-auto">
     <%=flash[:notice] %>
     <% if @chatmessage.errors.any? %>
     <%@chatmessage.errors.full_messages.each do |msg|%>
@@ -17,9 +9,24 @@
     <% end %>
     <%=form_with model: @chatmessage,url: chatgroup_chatmessages_path(@group.id) do |f| %>
     <%=f.hidden_field :chatgroup_id,value: @group.id %>
-    <%=f.text_field :message %>
+    <%=f.text_field :message,style: "width: 30%; height: 100px;" %>
     <%=f.submit "送信" %>
     <% end %>
-
    </div>
+
+
+    <% @group.chatmessages.each do |message| %>
+　　<hr>
+    <div class="media my-1">
+
+      <%=image_tag message.user.get_profile_image(100,100)%>
+      <div class="media-body">
+        <h5 class="mt-0"><%=message.user.nickname %></h5>
+        <strong class="text-left"><%=message.message %></strong>
+       </div>
+    </div>
+    <% end %>
+
+
+
 </div>
