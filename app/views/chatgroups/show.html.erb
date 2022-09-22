@@ -1,5 +1,5 @@
 <div class="container">
- <h1><%=@chatgroup.group_name %></h1>
+ <h1 class="my-5"><%=@chatgroup.group_name %></h1>
  <div class="row">
   <div class="col-5">
     <%= image_tag @chatgroup.get_group_image(300,300)%>
@@ -9,21 +9,22 @@
        <td class="border-dark"><%= @chatgroup.introduction %></td>
     </tr>
    </table>
-   <% if current_user.id == @chatgroup.owner_id %>
-    <%= link_to "削除",chatgroup_path(@chatgroup.id),mehtod: :delete, date:{confirm:"本当に削除しますか？"} %>
-    <% end %>
-    <% if Connect.find_by(chatgroup_id: @chatgroup.id,user_id: current_user.id).present? %>
-     <%=link_to "チャットルームへ",chatgroup_chatmessages_path(@chatgroup.id), class: "btn btn-primary"%>
-    <% else %>
-     <%= form_with model: @chatgroup, local: true do |f| %>
-     <%= f.hidden_field :user_id, :value => current_user.id %>
-     <%=f.submit'参加する',class:"btn btn-success"%>
-     <%end%>
-    <% end %>
-
+   <div class="row my-5">
+    <% if current_user.id == @chatgroup.owner_id %>
+     <%= link_to "削除",chatgroup_path(@chatgroup.id),mehtod: :delete,class: "btn btn-danger ", date:{confirm:"本当に削除しますか？"} %>
+     <% end %>
+     <% if Connect.find_by(chatgroup_id: @chatgroup.id,user_id: current_user.id).present? %>
+      <%=link_to "チャットルームへ",chatgroup_chatmessages_path(@chatgroup.id), class: "btn btn-primary mx-2"%>
+     <% else %>
+      <%= form_with model: @chatgroup, local: true do |f| %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%=f.submit'参加する',class:"btn btn-success mx-2"%>
+      <%end%>
+     <% end %>
     <%=link_to "一覧へ",chatgroups_path,class: "btn btn-info" %>
-
+   </div>
   </div>
+
   <div class="col-7">
    <h3>参加しているユーザー</h3>
    <table class="table table-hover table-inverse">
@@ -34,7 +35,7 @@
        </tr>
      </thead>
      <tbody>
-   
+
       <% @connects.each do |connect|%>
         <tr>
           <td>
