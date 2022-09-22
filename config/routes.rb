@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-
-
-
-  
   get 'chatmessages/index'
   namespace :admin do
     root "homes#top"
@@ -45,14 +41,16 @@ Rails.application.routes.draw do
 
   end
 
-  devise_for :admins,skip: [:registrations,:passwords],controllers: {
+  devise_for :admins, skip: [:registrations,:passwords], controllers: {
     sessions: "admin/sessions"
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :chatgroups do 
-    collection do 
+  resources :chatgroups do
+    collection do
       get :join
     end
-    resources :chatmessages,only: [:index,:create,:destroy]
-  end  
+    resources :chatmessages, only: [:index,:create,:destroy]
+  end
+
+  resources :connects, only: :destroy
 end
