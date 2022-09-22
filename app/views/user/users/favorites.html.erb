@@ -1,8 +1,8 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
    <div class="col-md-8 offset-md-1">
-       <h1>投稿一覧</h1>
-        <p><%=link_to "新規投稿",new_post_path %></p>
+       <h1>お気に入り一覧</h1>
+
         <P>投稿検索</P>
         <%= form_with url: search_posts_path, local: true, method: :get do |form| %>
         <%= form.text_field :keyword %>

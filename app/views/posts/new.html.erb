@@ -1,13 +1,15 @@
 <div class="mx-auto" style="width: 200px;">
   <h1>新規投稿</h1>
-<%= form_with model: @post do |f| %>
+  <%= form_with model: @post do |f| %>
 
-<h4>タイトル</h4>
-<%= f.text_field :title %>
-<h4>本文</h4>
-<%= f.text_area :body,style: "width: 200%; height: 200px;" %>
-<h4>タグ</h4>
-<%= f.text_area :tag_names, placeholder:",で区切ってください"%>
-<%=f.submit'投稿する',class:"btn btn-success"%>
-<%end%>
+  <h4>タイトル</h4>
+  <%= f.text_field :title %>
+  <h4>本文</h4>
+  <%= f.text_area :body,style: "width: 200%; height: 200px;" %>
+  <h4>タグ</h4>
+  <%= f.text_area :tag_names, placeholder:",で区切ってください"%>
+  <div class="my-3">
+    <%=f.submit'投稿する',class:"btn btn-success"%>
+  </div>
+  <%end%>
 </div>

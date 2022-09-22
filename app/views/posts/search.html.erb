@@ -1,4 +1,4 @@
-<h2>検索結果”<%=@keyword%>”</h2>
+<h2 class="my-5">検索結果”<%=@keyword%>”</h2>
 
 <div class="container px-5 px-sm-0">
   <div class="row">
@@ -29,8 +29,8 @@
 
           </tr>
          </thead>
-         <tbody>
-          <% @posts.each do |post| %>
+         <tbody class="my-5">
+          <% @post.each do |post| %>
           <tr>
             <td><%=link_to user_user_path(post.user.id) do %>
              <%= image_tag post.user.get_profile_image(80,80)%>

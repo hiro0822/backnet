@@ -9,11 +9,13 @@
     <div class="col-sm-8 offset-3">
 
         <%=form_with model: @chatgroup do |f| %>
-          <h5>グループ名</h5>
+          <h5 class="my-3">グループ名</h5>
           <%=f.text_field :group_name, style: "width: 50%;" %>
-          <h5>グループ概要</h5>
+          <h5 class="my-3">グループ概要</h5>
           <%=f.text_area :introduction, style: "width: 50%; height: 200px;" %>
-          <%=f.submit '編集終了',class: "btn btn-success col-sm-2" %>
+          <div class="row my-5">
+            <%=f.submit '編集終了',class: "btn btn-success col-sm-2 " %>
+          </div>
         <%end%>
      </div>
    </div>

@@ -3,12 +3,12 @@
 
 
 
-       <h1><strong>ユーザー情報</strong></h1>
+       <h1 class="my-5"><strong>ユーザー情報</strong></h1>
 
       <div class="row">
       <div class="col-4">
     　<%= image_tag @user.get_profile_image(250,250)%>
-      <table class="table table-bordered mt-3">
+      <table class="table table-bordered my-5">
 
         <tr>
           <td class="border-dark">ニックネーム</td>
@@ -16,12 +16,14 @@
         </tr>
         <tr>
           <td class="border-dark">自己紹介文</td>
-          <td class="border-dark"><%=safe_join(@user.introduction.split("\n"),tag(:br))%></td>
+          <td class="border-dark"><%=simple_format(@user.introduction)%></td>
         </tr>
       </table>
+      <div class="my-2">
        <%= link_to "いいね一覧",myfavorites_user_users_path(@user), class: "btn btn-primary" %>
 
        <%= link_to "編集する", edit_user_user_path(@user), class: "btn btn-success" %>
+      </div>
   　</div>
 
    <div class="col-8">

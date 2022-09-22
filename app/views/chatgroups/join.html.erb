@@ -1,11 +1,10 @@
 
 
 
-<h5>参加中のグループ</h5>
+<h5 class="my-5">参加中のグループ</h5>
 <% if @chatgroup_join == [] %>
 <%=@nogroup%>
 <%else%>
-参加中のグループ
 <table class="table table-hover table-inverse">
  <thead>
    <th>グループ画像</th>
@@ -24,8 +23,6 @@
     <td><%=connect.chatgroup.group_name%></td>
     <td><%=connect.chatgroup.introduction%></td>
     <td>(<%=connect.chatgroup.user_ids.count%>)</td>
-    <td><%=link_to "編集",edit_chatgroup_path(connect.chatgroup.id),class: "btn btn-success"%></td>
-    <td><%=link_to "削除",chatgroup_path(connect.chatgroup.id),method: :delete, class: "btn btn-danger" %></td>
   </tr>
   <%end%>
  </tbody>

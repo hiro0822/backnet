@@ -7,7 +7,9 @@
       <div class="media-body">
         <h5 class="mt-0"><%=comment.user.nickname %></h5>
         <strong class="text-left"><%=comment.comment %></strong>
+        <% if comment.user_id == current_user.id %>
         <%=link_to"削除",post_comment_path(comment.post,comment),method: :delete,class: "btn btn-sm btn-danger"%>
+        <% end %>
        </div>
     </div>
     <% end %>

@@ -2,18 +2,18 @@
  <div class="row">
    <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
 
-      <h1>ようこそ<strong>BACKNETへ！</strong></h1>
-     <p> ここはファン歴関係なく野球好きが集まり語り合うサイトです！！</p>
+      <h1 class="mt-5">ようこそ<strong>BACKNETへ！</strong></h1>
+     <p class="mt-5"> ここはファン歴関係なく野球好きが集まり語り合うサイトです！！</p>
          <P>あなたもいろいろなファンと語り合いませんか？</P>
 
     <div class="btn-wrapper col-10 mx-auto">
-      <div>
+      <div class="mt-4">
       <%= link_to "新規登録",new_user_registration_path,class:"btn btn-info btn-sm btn-block mb-3" %>
       </div>
       <div>
       <%= link_to "ログイン",new_user_session_path,class:"btn btn-success btn-sm btn-block mb-3" %>
       </div>
-      <div>
+      <div class="mb-5">
       <%= link_to "ゲストログイン",users_guest_sign_in_path,method: :post,class:"btn btn-primary btn-sm btn-block"%>
       </div>
     </div>

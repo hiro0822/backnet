@@ -1,5 +1,5 @@
 <div class="mx-auto" style="width: 200px;">
-<h2>グループ作成</h2>
+<h2 class="my-5">グループ作成</h2>
 
 <%= form_with url: chatgroups_path, model: @chatgroup do |f| %>
 <%= text_field_tag 'chatgroup[user_ids][]', "#{current_user.id}", type: 'hidden' %>
