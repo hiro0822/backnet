@@ -3,6 +3,7 @@ class ChatmessagesController < ApplicationController
   def index
     @chatmessage = Chatmessage.new
     @group = Chatgroup.find(params[:chatgroup_id])
+    @messages = @group.chatmessages.order(created_at: :desc)
   end
 
   def create

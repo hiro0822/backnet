@@ -14,7 +14,7 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
        <div class="container">
-          <%=link_to "BackNet",root_path,class:"text-white"%>
+          <%=link_to image_tag("LOGO.jpg",size:"50x50"),root_path,class:"text-white"%>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                           aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -41,7 +41,7 @@
               </li>
               <li>
                 <%=link_to destroy_user_session_path,method: :delete,class:"nav-link text-light" do %>
-                <i class="fas fa-sign-out"></i>Log out
+                <i class="fas fa-sign-out-alt"></i>Log out
                 <%end%>
               </li>
 
@@ -73,7 +73,7 @@
 
                <li>
                  <%=link_to destroy_admin_session_path,method: :delete,class:"nav-link text-light" do %>
-                 <i class="fad fa-sign-out-alt"></i>Admin Logout
+                 <i class="fas fa-door-open"></i>Admin Logout
                  <%end%>
                </li>
 
