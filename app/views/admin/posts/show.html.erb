@@ -26,8 +26,8 @@
    </h3>
  </div>
 
-   
-    <%=link_to "削除",admin_post_path(@post.id),class: "btn btn-danger", method: :delete%>
+
+   <%=link_to "削除",admin_post_path(@post.id),class: "btn btn-danger", method: :delete%>
 
 <table class="my-5">
   <%=render"admin/comments/comments",posts: @post,user: @user%>
