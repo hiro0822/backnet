@@ -12,6 +12,7 @@ class ChatmessagesController < ApplicationController
      if @chatmessage.save
       redirect_to chatgroup_chatmessages_path(@group.id),notice: '送信しました'
      else
+      @messages = @group.chatmessages.order(created_at: :desc)
       render :index
      end
   end
