@@ -51,7 +51,7 @@
 
             </td>
             <td><%=link_to post.title.truncate(10),post_path(post.id)%></td>
-            <td><%=link_to post.body.truncate(10)%></td>
+            <td><%=link_to post.body.truncate(10),post_path(post.id)%></td>
             <td><%=link_to "#{post.comments.count}コメント",post_path(post.id)%></td>
             <td id='favorite_buttons_<%= post.id %>'>
              <%=render 'favorites/favorites',post: post%>

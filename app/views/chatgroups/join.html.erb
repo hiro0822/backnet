@@ -20,8 +20,12 @@
       <%=image_tag connect.chatgroup.get_group_image(100,100)%>
       <%end%>
     </td>
-    <td><%=connect.chatgroup.group_name%></td>
-    <td><%=connect.chatgroup.introduction%></td>
+    <td>
+      <%=link_to chatgroup_path(connect.chatgroup) do %>
+      <%=connect.chatgroup.group_name.truncate(10)%>
+      <%end%>
+      </td>
+    <td><%=connect.chatgroup.introduction.truncate(20)%></td>
     <td>(<%=connect.chatgroup.user_ids.count%>)</td>
   </tr>
   <%end%>
