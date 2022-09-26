@@ -21,7 +21,7 @@
              <%= image_tag posts.user.get_profile_image(80,80)%>
              <%end%>
             </td>
-            <td><%=link_to posts.title,admin_post_path(posts.id)%></td>
+            <td><%=link_to posts.title.truncate(10),admin_post_path(posts.id)%></td>
             <td><%=link_to posts.body.truncate(20)%></td>
           </tr>
           <%end%>
